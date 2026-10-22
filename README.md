@@ -1,34 +1,30 @@
 # PROFILEd
 
-PROFILEd is an independent research project exploring how control shifts between people and AI when a profile becomes a generative visual system.
+**An independent research and interaction-design project about authorship, disclosure, and control in generative identity systems.**
 
-## Project overview
+## The question
 
-The implemented first version consists of three systems. Each begins with the same basic profile input—name, age, interests, and field of study or work—and uses a shared Processing visual language. The systems differ in how they distribute artistic decisions:
+Static profiles compress people into fixed fields. A generative profile can express more context and change over time, but it also raises a harder question: who decides which parts of a person are represented, and how? PROFILEd studies the difference between human-defined rules, human–AI collaboration, and algorithm-led selection. Its visuals are *digital impressions*, not claims to a person's complete or “true” identity.
 
-1. **SELF-PROFILED** — the human predetermines how information maps to form; the program executes those rules.
-2. **CO-PROFILED** — the human defines the available visual vocabulary; AI maps each supplied interest within it.
-3. **ALGORITHMICALLY PROFILED** — the human supplies the profile; AI decides what to retain, merge, or omit and how the resulting traces are represented.
+## Research and design process
 
-The images are not presented as a person’s “true identity.” Each is a digital impression produced under a particular structure of control. The project asks when AI shifts from tool to collaborator—and when it begins to author the profile itself.
+1. **Frame the control models.** I created three early prototypes using a shared visual vocabulary so that the distribution of decision-making, rather than an unrelated visual style, was the main variable.
+2. **Ask about context and disclosure.** I designed a branching Qualtrics guided self-interview with scenario questions, follow-ups, and participant-controlled sharing choices.
+3. **Translate responses into rules.** I mapped structured answers to visual behavior and kept the original wording and mapping parameters auditable in the local research workbench.
+4. **Make comparison evidence-based.** Later JavaScript prototypes let viewers explore individual profiles and compare two profiles. Connections appear only for exact shared values, explicitly shared options, or explicitly shared reasons. They are not compatibility scores or inferred similarities.
+5. **Iterate from feedback.** Testing informed the move from separate visual concepts toward a unified interaction system, with a proposed input → structured data → rules → dynamic feedback pipeline.
 
-## My role
+## Interaction details
 
-- Defined the research question and interaction framework
-- Built three Processing prototypes using one shared visual system
-- Compared human-authored rules, human–AI collaboration, and algorithm-led selection
-- Drafted a Qualtrics guided self-interview using scenario questions, branching follow-ups, and participant-controlled disclosure
-- Developed the next research direction around plural, revisable, and consent-based representations of possible selves
+- A profile opens as a constellation assembled from topic-level visuals; viewers can move from the overview to the underlying response, visual mapping, and parameters.
+- Comparison keeps both profiles visible and lets viewers filter connection types and inspect the source evidence behind a link.
+- Missing or unmapped answers are shown as such rather than filled with invented visuals.
+- The research explores plural and revisable representations, including what a person chooses to show and what remains unseen.
 
-## Current status
+## My role and tools
 
-This repository currently presents the project’s documented concept and structure. Source code and research materials are not published here yet.
+I defined the research question, designed the survey and interaction framework, developed visual mappings, built Processing and JavaScript/p5.js prototypes, and reviewed outputs against source responses. Tools and methods include Qualtrics, Processing, JavaScript, p5.js, HTML/CSS, generative systems, and qualitative analysis.
 
-## Repository structure
+## Status and publication boundary
 
-- `assets/` — reserved for selected diagrams and screenshots
-- `prototype/` — reserved for approved prototype exports
-
-## Tools and methods
-
-Processing · Qualtrics · generative systems · interaction prototyping · qualitative research
+This is an **ongoing research prototype**, not a deployed AI identity service. The public repository currently provides portfolio documentation and selected approved materials. The latest local research workbench contains participant responses and comparison previews that have **not** been cleared for public release; it is intentionally not uploaded here. AI and database integration are a roadmap, not a current feature.
