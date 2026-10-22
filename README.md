@@ -2,6 +2,10 @@
 
 **An independent research and interaction-design project about authorship, disclosure, and control in generative identity systems.**
 
+![Synthetic PROFILEd demo showing a human-authored visual mapping](assets/PROFILEd-synthetic-demo-preview.png)
+
+**View the current prototype:** [Download the self-contained HTML demo](prototype/PROFILEd_public_demo.html) and open it in a browser. The controls switch between Human, Shared, and System decision modes and let visitors change example values.
+
 ## The question
 
 Static profiles compress people into fixed fields. A generative profile can express more context and change over time, but it also raises a harder question: who decides which parts of a person are represented, and how? PROFILEd studies the difference between human-defined rules, human–AI collaboration, and algorithm-led selection. Its visuals are *digital impressions*, not claims to a person's complete or “true” identity.

@@ -1,3 +1,6 @@
 # Assets
 
-The public interaction and its generated visual elements are contained in [the self-contained demo](../prototype/PROFILEd_public_demo.html). Research responses and participant-specific imagery are not published.
+- [Public demo preview](PROFILEd-synthetic-demo-preview.png) — screenshot of the synthetic-only interaction demo.
+- [Self-contained interaction](../prototype/PROFILEd_public_demo.html) — download the HTML file and open it in a browser.
+
+Participant responses, identifying details, and workbench screenshots are not published here.
