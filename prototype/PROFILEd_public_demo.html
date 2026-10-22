@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PROFILEd — Synthetic Data Demo</title>
+  <style>
+    :root{color-scheme:dark;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#080b13;color:#f1f3f8}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 75% 15%,#1a213b 0%,#080b13 48%)}
+    main{max-width:1180px;margin:auto;padding:34px 24px 60px}
+    header{display:flex;justify-content:space-between;align-items:start;gap:24px;border-bottom:1px solid #30394f;padding-bottom:25px}
+    h1{font-size:clamp(36px,5vw,62px);letter-spacing:-.06em;margin:0 0 8px}h1 span{color:#b7b2ff}
+    h2{font-size:18px;margin:0 0 16px}p{line-height:1.55;color:#aeb9ce;margin:0}
+    .eyebrow{color:#b7b2ff;text-transform:uppercase;letter-spacing:.18em;font-size:11px;font-weight:800;margin-bottom:12px}
+    .badge{font-size:12px;color:#d5d3ff;border:1px solid #6864a6;border-radius:999px;padding:9px 13px;white-space:nowrap}
+    .layout{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(260px,.9fr);gap:22px;margin-top:26px}
+    .panel{border:1px solid #323b50;border-radius:20px;background:#111726cc;overflow:hidden}
+    .canvasbar{padding:17px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #30394f;font-size:12px;color:#aeb9ce}
+    #scene{display:block;width:100%;height:500px}
+    .visualnote{padding:0 22px 20px;font-size:12px;color:#8796b0}
+    .controls{padding:24px}.modes{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:25px}
+    button{font:inherit;cursor:pointer;border-radius:10px;border:1px solid #3d4862;background:#171f31;color:#c1cbdd;padding:10px 6px;font-size:12px}
+    button.active{background:#37336f;color:#fff;border-color:#a9a0ff}button:hover{border-color:#a9a0ff}
+    label{display:block;margin:18px 0 4px;font-size:13px;color:#e0e7f1}.range{display:flex;align-items:center;gap:12px}
+    input[type=range]{width:100%;accent-color:#a9a0ff}.number{min-width:30px;text-align:right;color:#aeb9ce;font-size:12px}
+    .explain{background:#1a2236;border-radius:13px;padding:15px;margin-top:22px;border:1px solid #35405a}
+    .explain strong{display:block;font-size:13px;margin-bottom:7px}.explain p{font-size:12px}
+    .key{display:flex;gap:15px;flex-wrap:wrap;margin-top:19px;color:#b4bfd0;font-size:12px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+    footer{margin-top:24px;color:#8997ae;font-size:12px;line-height:1.5}
+    @media(max-width:820px){header{display:block}.badge{display:inline-block;margin-top:16px}.layout{grid-template-columns:1fr}#scene{height:390px}}
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div><div class="eyebrow">Research prototype · public demonstration</div><h1>PROFILE<span>d</span></h1><p>Explore how the same synthetic profile changes when visual decisions are made by a person, shared with a system, or delegated to it.</p></div>
+    <div class="badge">Synthetic data only · No AI connection</div>
+  </header>
+  <section class="layout">
+    <div class="panel">
+      <div class="canvasbar"><span>Synthetic profile: Alex</span><span id="mode-name">Self-profiled</span></div>
+      <canvas id="scene" aria-label="Animated constellation representing synthetic profile values"></canvas>
+      <div class="visualnote">Each orbit represents one answer dimension. Motion explains system behavior; it is not a measure of personality or compatibility.</div>
+    </div>
+    <div class="panel controls">
+      <h2>Who decides what is shown?</h2>
+      <div class="modes" role="group" aria-label="Control model">
+        <button class="active" data-mode="self">Human</button>
+        <button data-mode="co">Shared</button>
+        <button data-mode="algorithm">System</button>
+      </div>
+      <p>These are invented demonstration answers. Change them to see how the mapping responds.</p>
+      <label for="initiative">Taking initiative</label><div class="range"><input id="initiative" type="range" min="0" max="100" value="68"><span class="number" id="initiative-value">68</span></div>
+      <label for="openness">Openness to change</label><div class="range"><input id="openness" type="range" min="0" max="100" value="45"><span class="number" id="openness-value">45</span></div>
+      <label for="connection">Seeking connection</label><div class="range"><input id="connection" type="range" min="0" max="100" value="78"><span class="number" id="connection-value">78</span></div>
+      <div class="explain"><strong id="decision-title">Human-authored mapping</strong><p id="decision-text">You set the three values. Each value directly sets an orbit's radius and particle count; the system only renders those rules.</p></div>
+      <div class="key"><span><i class="dot" style="background:#b8b0ff"></i>Initiative</span><span><i class="dot" style="background:#e4a596"></i>Change</span><span><i class="dot" style="background:#90d8c6"></i>Connection</span></div>
+    </div>
+  </section>
+  <footer>This public demo is a simplified illustration of PROFILEd's three control structures, built with synthetic values. It does not contain survey records, participant identities, or the internal research workbench. “Shared” and “System” simulate decision rules locally; they do not call an AI model.</footer>
+</main>
+<script>
+  const canvas=document.getElementById('scene'),ctx=canvas.getContext('2d');
+  const inputs=['initiative','openness','connection'].map(id=>document.getElementById(id));
+  const colors=['#b8b0ff','#e4a596','#90d8c6'];
+  const descriptions={
+    self:['Self-profiled','Human-authored mapping','You set the three values. Each value directly sets an orbit’s radius and particle count; the system only renders those rules.'],
+    co:['Co-profiled','Shared mapping','Your values remain visible, while a deterministic system rule blends neighboring dimensions. This illustrates a shared decision boundary without making an AI call.'],
+    algorithm:['Algorithmically profiled','System-selected emphasis','A deterministic rule emphasizes the highest value and reduces the lowest. This illustrates the consequences of delegated selection, not an inference about a real person.']
+  };
+  let mode='self',time=0;
+  document.querySelectorAll('[data-mode]').forEach(button=>button.addEventListener('click',()=>{
+    mode=button.dataset.mode;document.querySelectorAll('[data-mode]').forEach(b=>b.classList.toggle('active',b===button));
+    document.getElementById('mode-name').textContent=descriptions[mode][0];
+    document.getElementById('decision-title').textContent=descriptions[mode][1];
+    document.getElementById('decision-text').textContent=descriptions[mode][2];
+  }));
+  inputs.forEach(input=>input.addEventListener('input',()=>document.getElementById(input.id+'-value').textContent=input.value));
+  function valueMap(v){
+    if(mode==='self')return v;
+    if(mode==='co')return v.map((n,i)=>Math.round(.72*n+.28*v[(i+1)%3]));
+    const hi=v.indexOf(Math.max(...v)),lo=v.indexOf(Math.min(...v));
+    return v.map((n,i)=>i===hi?Math.min(100,n+13):i===lo?Math.max(0,n-18):n);
+  }
+  function resize(){const dpr=Math.min(window.devicePixelRatio||1,2),rect=canvas.getBoundingClientRect();canvas.width=Math.round(rect.width*dpr);canvas.height=Math.round(rect.height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0)}
+  window.addEventListener('resize',resize);resize();
+  function frame(){
+    const w=canvas.clientWidth,h=canvas.clientHeight,cx=w/2,cy=h/2;
+    ctx.fillStyle='rgba(9,14,27,.27)';ctx.fillRect(0,0,w,h);
+    const raw=inputs.map(x=>Number(x.value)),mapped=valueMap(raw),scale=Math.min(w,h)/500;
+    ctx.save();ctx.translate(cx,cy);
+    mapped.forEach((v,i)=>{
+      const radius=(47+i*62+v*.28)*scale,count=Math.round(44+v*.75),phase=time*(i%2?-.11:.13)+i*2.1;
+      ctx.strokeStyle=colors[i]+'33';ctx.lineWidth=1;ctx.beginPath();ctx.ellipse(0,0,radius,radius*.72,phase,0,Math.PI*2);ctx.stroke();
+      for(let k=0;k<count;k++){
+        const a=k/count*Math.PI*2+phase,jitter=Math.sin(k*13.7+i*8.1)*8*scale;
+        const x=Math.cos(a)*(radius+jitter),y=Math.sin(a)*(radius*.72+jitter);
+        const size=(k%11===0?2.3:1.15)*scale,alpha=.35+.55*(.5+.5*Math.sin(time*1.2+k*.63));
+        ctx.globalAlpha=alpha;ctx.fillStyle=colors[i];ctx.beginPath();ctx.arc(x,y,size,0,Math.PI*2);ctx.fill();
+      }
+    });
+    ctx.globalAlpha=1;ctx.fillStyle='#e7e4ff';ctx.shadowColor='#b7b0ff';ctx.shadowBlur=26;ctx.beginPath();ctx.arc(0,0,5*scale,0,Math.PI*2);ctx.fill();ctx.restore();
+    time+=.016;requestAnimationFrame(frame);
+  }
+  frame();
+</script>
+</body>
+</html>
