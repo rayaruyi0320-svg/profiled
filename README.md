@@ -32,3 +32,7 @@ I defined the research question, designed the survey and interaction framework, 
 ## Status and publication boundary
 
 This is an **ongoing research prototype**, not a deployed AI identity service. The public repository includes a [self-contained public demo](prototype/PROFILEd_public_demo.html) that can be downloaded and opened in a browser. It explores Human, Shared, and System control modes with synthetic, anonymous values and makes no AI calls. The latest local research workbench contains participant responses and comparison previews that have **not** been cleared for public release; it is intentionally not uploaded here. AI and database integration are a roadmap, not a current feature.
+
+## Latest local prototype source
+
+[Ver7 source archive](prototype/ver7/) contains the interactive-sky interface and reusable visualization rules shown in the latest research review. It excludes participant data and generated portraits and therefore is not a runnable public demo; the synthetic demo above remains available.

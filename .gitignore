@@ -1,0 +1,11 @@
+.DS_Store
+node_modules/
+*.zip
+*.csv
+*.vtt
+.env
+.env.*
+prototype/ver7/generated/
+prototype/ver7/source-data/
+prototype/ver7/review/
+prototype/ver7/studies/

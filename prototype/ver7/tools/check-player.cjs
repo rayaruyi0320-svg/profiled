@@ -1,0 +1,12 @@
+const vm=require('vm'),fs=require('fs'),assert=require('assert');
+const root=require("path").resolve(__dirname,"..");
+const nodes={};let raf,draws=[];
+for(const id of ['art','art-status','replay','scrub','note','motion']) nodes[id]={getBoundingClientRect:()=>({width:400,height:220}),getContext:()=>({setTransform(){}})};
+const ctx={APP_CONFIG:{galaxy:{formationSeconds:7}},URLSearchParams,location:{search:'?person=p&topic=q6'},CATALOG:{people:[{id:'p',topics:[{id:'q6',data:{}}]}]},document:{getElementById:id=>nodes[id],body:{classList:{add(){}}},hidden:false},matchMedia:()=>({matches:false}),devicePixelRatio:1,VisualBridge:{draw:(c,t,s)=>draws.push({...s}),parameters:()=>({})},parent:{postMessage(){}},ResizeObserver:class{observe(){}},IntersectionObserver:class{observe(){}},requestAnimationFrame:f=>raf=f,window:{addEventListener(){}}};
+vm.createContext(ctx);vm.runInContext(fs.readFileSync(root+'/app/render-page.js','utf8'),ctx);
+for(let i=0;i<100;i++)raf(i*100);
+assert(draws.some(d=>d.progress>.9));assert(draws.at(-1).progress<.9);
+nodes.motion.onclick();const paused=draws.at(-1).time;raf(10100);raf(10200);assert.equal(draws.at(-1).time,paused);
+nodes.motion.onclick();raf(10300);assert.notEqual(draws.at(-1).time,paused);
+nodes.replay.onclick();assert.equal(draws.at(-1).progress,0);assert.equal(draws.at(-1).time,0);
+console.log('PASS: formation forward/reverse, pause, play, replay');
