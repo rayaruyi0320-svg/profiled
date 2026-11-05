@@ -36,3 +36,7 @@ This is an **ongoing research prototype**, not a deployed AI identity service. T
 ## Latest local prototype source
 
 [Ver7 source archive](prototype/ver7/) contains the interactive-sky interface and reusable visualization rules shown in the latest research review. It excludes participant data and generated portraits and therefore is not a runnable public demo; the synthetic demo above remains available.
+
+## Runnable ver8 demo
+
+[Ver8 letter-alias demo](prototype/ver8/) includes the response catalogue and precomputed portraits. Download this repository, then open `prototype/ver8/index.html` in a browser. No installation or server is required. Participants use letter aliases A–N; narrative answers are retained. Ver7 remains unchanged as a source archive.

@@ -1,0 +1,48 @@
+/* Opening scene: atmosphere only. Portraits are drawn by the app renderer. */
+#sky-intro {
+ position:fixed; inset:0; z-index:100; color:#e5e8ed;
+ background:radial-gradient(ellipse at 48% 45%,#12172299,transparent 66%),#020305;
+ display:grid; grid-template-rows:auto minmax(0,1fr) auto;
+ padding:clamp(18px,4vw,48px); overflow:auto;
+}
+#sky-intro::before { content:""; position:absolute; inset:0;
+ background:url("../assets/sky-depth.svg") center/cover; opacity:.45; pointer-events:none; }
+#sky-intro > * { position:relative; }
+.intro-top { display:flex; justify-content:space-between; align-items:center; }
+.intro-top span { letter-spacing:.14em; font-size:18px; }
+#sky-intro button { min-height:44px; padding:8px 18px; border:1px solid #535b69;
+ background:#10141b; color:#e5e8ed; border-radius:6px; cursor:pointer; }
+#sky-intro button:hover { background:#242b36; }
+#sky-intro button:focus-visible { outline:2px solid #f0c58f; outline-offset:4px; }
+#sky-intro button:disabled { opacity:.5; cursor:wait; }
+.intro-cosmos { min-height:260px; display:flex; align-items:center; justify-content:center; }
+.intro-person { width:min(48vw,520px); transition:opacity 600ms ease-out; text-align:center; }
+.intro-person canvas { width:100%; height:clamp(220px,43vh,470px); display:block; }
+.intro-person p { color:#adb5c1; margin:0; font-size:14px; }
+#intro-second { display:none; }
+#sky-intro[data-step="2"] #intro-second { display:block; }
+#intro-link { position:absolute; left:35%; right:35%; top:50%; height:1px;
+ background:#dcb48a; box-shadow:0 4px #dcb48a; opacity:0; pointer-events:none; }
+#sky-intro[data-step="2"] #intro-link { opacity:.8; }
+.intro-narration { text-align:center; max-width:680px; margin:0 auto; padding-bottom:12px; }
+.intro-narration h1 { font:400 clamp(25px,3vw,38px)/1.25 system-ui; margin:12px 0; }
+#intro-evidence { color:#f0c58f; font-size:17px; line-height:1.6; min-height:3.2em; }
+#intro-caption { font-size:14px; color:#adb5c1; }
+.intro-narration button { margin-top:14px; }
+@media(max-width:600px) {
+ .intro-person { width:48%; }
+ #sky-intro:not([data-step="2"]) .intro-person { width:90%; }
+ .intro-person canvas { height:250px; }
+ .intro-narration h1 { font-size:25px; }
+}
+@media(prefers-reduced-motion:reduce) { .intro-person { transition:none; } }
+@keyframes arrive-in-sky {
+ from { opacity:0; transform:scale(.94); }
+ to { opacity:1; transform:scale(1); }
+}
+.intro-person { animation:arrive-in-sky 1200ms ease-out both; }
+#sky-intro[data-step="1"] #intro-first { transform:scale(1.08); }
+@media(prefers-reduced-motion:reduce) {
+ .intro-person { animation:none; }
+ #sky-intro[data-step="1"] #intro-first { transform:none; }
+}

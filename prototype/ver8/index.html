@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>PROFILEd · Personal constellations</title>
+    <link rel="stylesheet" href="app/style.css?v=8.0" />
+    <link rel="stylesheet" href="app/ui-polish.css?v=8.0" />
+      <link rel="stylesheet" href="app/intro.css?v=8.0" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="#universe">PROFILEd<span>personal constellations</span></a
+      ><span class="research">VER 8 · LETTER-ALIAS DEMO · REVIEW PENDING</span>
+    <button id="guide-restart" type="button">How to explore</button></header>
+    <aside id="welcome-guide" aria-label="Getting started" hidden>
+      <small id="guide-step"></small><h2 id="guide-title"></h2>
+      <p id="guide-copy"></p><button id="guide-action" type="button">Explore the sky</button>
+      <button id="guide-skip" type="button">Skip guide</button>
+    </aside>
+    <main>
+      <nav id="page-navigation" aria-label="Page navigation" hidden>
+        <button id="home">← Sky</button
+        ><button id="back" hidden>Back to profile</button><span id="breadcrumb"></span>
+      </nav>
+      <section class="intro">
+        <p class="eyebrow" id="eyebrow">FOURTEEN PERSONAL WORLDS</p>
+        <h1 id="heading">Find a place to begin.</h1>
+        <p id="subtitle">
+          Explore a profile, or choose two worlds to discover their explicit common
+          ground.
+        </p>
+      </section>
+      <details id="comparison-options" hidden>
+        <summary id="comparison-options-label">Comparison options</summary>
+        <div id="comparison-options-content"></div>
+      </details>
+      <details id="sky-options"><summary>Filter perspectives & themes</summary><div id="sky-options-content"></div></details>
+      <div class="toolbar" id="main-toolbar">
+        <div id="pair-controls">
+          <label>First profile <select id="person-a"></select></label>
+          <label>Second profile <select id="person-b"></select></label>
+          <button id="compare">Compare two profiles</button>
+        </div>
+        <label id="self-label"
+          >View
+          <select id="self"></select></label
+        ><label id="domain-label"
+          >Theme
+          <select id="domain"></select
+        ></label>
+      </div>
+      <div id="self-switch" aria-label="Self perspective" hidden></div>
+      <button id="explore-toggle" hidden aria-expanded="false" aria-controls="explore-panel">Explore topics ↓</button>
+      <fieldset id="legend">
+        <legend>Shared answers</legend>
+        <label
+          ><input type="checkbox" value="value" checked /><i class="value"></i>Same
+          response</label
+        ><label
+          ><input type="checkbox" value="choice" checked /><i class="choice"></i>Shared
+          choice</label
+        ><label
+          ><input type="checkbox" value="reason" checked /><i class="reason"></i>Shared
+          reason</label
+        >
+      </fieldset>
+      <button id="reset-filters" hidden>Reset filters</button>
+      <p id="link-note" class="muted" role="status"></p>
+      <button id="explore-connections" hidden></button>
+      <div id="connection-suggestions" aria-label="Other profiles with shared evidence" hidden></div>
+      <p id="coverage-note" class="muted"></p>
+      <div id="stage">
+        <div id="sky-controls" hidden>
+          <button id="pair-mode" type="button" aria-pressed="false">Select two galaxies</button>
+          <button id="open-pair" type="button" hidden>Open comparison</button>
+          <button id="clear-pair" type="button" hidden>Clear selection</button>
+        </div>
+        <svg id="links" aria-label="Connections between profiles"></svg>
+        <div id="worlds"></div>
+      </div>
+      <div id="link-tooltip" role="tooltip" hidden></div>
+      <aside id="topic-preview" hidden aria-label="Live topic preview">
+        <div class="preview-heading"><strong id="preview-title"></strong><button id="preview-collapse" aria-expanded="true">Minimise</button><button id="preview-close" aria-label="Close preview">×</button></div>
+        <p id="preview-help">Live animation · same mapping as the topic page</p>
+        <label id="preview-item-label" hidden>Interest <select id="preview-item"></select></label>
+        <div id="preview-frame"></div>
+        <div id="preview-reading" aria-label="Response and source"></div>
+        <button id="preview-open">Open full topic</button>
+      </aside>
+      <details id="explore-panel">
+        <summary>Explore topics & source records</summary>
+        <div id="explore-filters"></div>
+        <div id="topics"></div>
+      </details>
+      <section id="detail" hidden></section>
+      <aside id="evidence" hidden aria-live="polite">
+        <button id="close-evidence">Close</button>
+        <p class="eyebrow" id="evidence-type"></p>
+        <h2 id="evidence-title"></h2>
+        <div id="evidence-text"></div>
+        <button id="inspect">Inspect this topic together</button>
+      </aside>
+      <details class="about">
+        <summary>About this portrait & prototype</summary>
+        <p>
+          The galaxy samples the actual mapped question visuals. Domain directions and camera motion use shared rules. Q23 selections enlarge topic footprints; Q24 invitations move topics outward. These do not change sharing permissions.
+          Missing answers and pending mappings add no invented shapes. Selves are
+          perspectives across situations; interests and later narrative studies without a self assignment appear only under All selves. Empty profiles are hidden in filtered sky views.
+        </p>
+        <p>
+          Click a galaxy to open its profile. Shift-click two galaxies (or use Select two
+          galaxies) to reveal their eligible connections in the sky. Hover or focus a line
+          for a short explanation; click it for the original evidence. Lines distinguish
+          exact numeric responses within the same question and self, shared categorical
+          choices, and explicitly assigned shared reasons. A line does not measure
+          similarity or relationship strength. No approximate matches or keyword guesses
+          are used. Name-side dots and numbers count exact evidence items in the active filters, not unique topics or relationship strength. Click empty sky to clear selection.
+        </p>
+        <p>
+          All fourteen records are available for local researcher inspection. In this
+          local test, all profiles may enter pair comparison even if their recorded Q37
+          scope is blank or restrictive. The original survey scope remains visible in
+          each topic and is not changed. Story-card permissions remain separate. This
+          test override is not participant consent for sharing or publication.
+        </p>
+        <p>
+          Unmapped answers remain inspectable in a single profile with their source. No
+          data is sent to a server. Use the source guide in this folder to edit the
+          individual rules.
+        </p>
+      </details>
+    </main>
+    <script src="generated/catalog.js"></script>
+    <!-- 本地直接打开：逐人载入可见画像，不依赖运行时解压。 -->
+    <script src="app/profile-loader.js?v=8.0"></script>
+    <script src="app/config.js?v=8.0"></script>
+    <script src="shared/self-views.js"></script>
+    <script src="app/connections.js"></script>
+    <script src="shared/q7-reasons.js"></script>
+    <script src="app/mapping-reading.js"></script>
+    <script src="app/experience.js?v=8.0"></script>
+    <script src="app/app.js?v=8.0"></script>
+      <script src="app/intro.js?v=8.0"></script>
+  </body>
+</html>

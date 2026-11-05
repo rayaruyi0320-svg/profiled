@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>PROFILEd · Topic visual</title>
+    <style>
+      /* Embedded art shares the parent sky; standalone render retains a dark fallback. */
+      :root {
+        color-scheme: dark;
+        --visual-background: transparent;
+      }
+      html,
+      body {
+        margin: 0;
+        background: var(--visual-background);
+        color: #c9d7d0;
+        font: 12px/1.5 system-ui;
+      }
+      /* 画布与控件各占固定布局行，控件换行不再挤出 iframe。 */
+      html, body { height: 100%; overflow: hidden; }
+      body { display: grid; grid-template-rows: minmax(0, 1fr) auto; }
+      canvas {
+        background: var(--visual-background);
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        min-width: 0;
+      }
+      [hidden] { display: none !important; }
+      body:not(.controls-ready) footer { visibility: hidden; }
+      footer {
+        background: var(--visual-background);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        padding: 5px 12px;
+      }
+      button {
+        background: #18292d;
+        color: #dbe3dc;
+        border: 1px solid #42605b;
+        border-radius: 20px;
+        padding: 5px 12px;
+        cursor: pointer;
+      }
+      input {
+        width: 100px;
+        accent-color: #b7cabc;
+      }
+      #note {
+        color: #97aaa1;
+      }
+      button:focus-visible,
+      input:focus-visible {
+        outline: 2px solid #e5b694;
+      }
+      button:hover:enabled { border-color: #c4aa83; }
+      button:active:enabled { color: #f4cc92; }
+      button:disabled, input:disabled { opacity: .55; cursor: default; }
+    </style>
+  </head>
+  <body>
+    <script>window.PROFILED_TRANSPARENT_ART = window.self !== window.top; if (!window.PROFILED_TRANSPARENT_ART) document.documentElement.style.setProperty("--visual-background", "#050608");</script>
+    <p id="art-status" role="status" style="position:absolute;left:1rem;top:.5rem">Preparing visual…</p>
+    <script>
+      // Display an actionable error if a local drawing script cannot load.
+      window.addEventListener("error", event => {
+        if (event.target?.tagName === "SCRIPT" || event.message) {
+          const status = document.getElementById("art-status");
+          status.hidden = false;
+          status.textContent = "This visual could not load. Reopen the topic to try again.";
+        }
+      }, true);
+    </script>
+    <canvas id="art"></canvas>
+    <footer>
+      <button id="motion">Pause</button><button id="replay" hidden>Replay formation</button
+      ><input
+        aria-label="Formation progress"
+        type="range"
+        id="scrub" aria-label="Formation progress" hidden
+        min="0"
+        max="100"
+        value="100"
+      /><span id="note"></span>
+    </footer>
+    <script src="generated/catalog.js"></script>
+    <script src="app/config.js"></script>
+    <script src="shared/self-views.js"></script>
+    <script src="shared/q1-filaments.js"></script>
+    <script src="shared/q2-membranes.js"></script>
+    <script src="shared/q3-weave.js"></script>
+    <script src="shared/mapping.js"></script>
+    <script src="shared/particles.js"></script>
+    <script src="shared/q5-atlas.js"></script>
+    <script src="shared/q5-field.js"></script>
+    <script src="shared/q6-templates.js"></script>
+    <script src="shared/q6-boundary.js"></script>
+    <script src="shared/q7-reasons.js"></script>
+    <script src="shared/q7-meaning-art.js"></script>
+    <script src="shared/q8-art.js"></script>
+    <script src="shared/q21-art.js"></script>
+    <script src="shared/q22-art.js"></script>
+    <script src="shared/q42-art.js"></script>
+    <script src="app/render-bridge.js"></script>
+    <script src="app/render-page.js"></script>
+  </body>
+</html>
